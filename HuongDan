@@ -1,1 +1,15 @@
-hi
+SDN
+opkg update --no-check-certificate
+opkg install openvswitch
+/usr/bin/ovs-ctl start
+ovs-vsctl add-br br-wlan0
+ovs-vsctl set-fail-mode br-wlan0 standalone
+ovs-vsctl add-port br-wlan0 wlan0
+ovs-vsctl set-controller br-wlan0 tcp:IP:PORT
+
+
+POX: https://noxrepo.github.io/pox-doc/html/
+git clone http://github.com/noxrepo/pox
+cd pox
+git checkout eel
+./pox.py --verbose forwarding.l2_learning
